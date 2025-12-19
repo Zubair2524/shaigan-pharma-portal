@@ -49,7 +49,7 @@
         header {
             background: linear-gradient(135deg, #1a472a 0%, #2d5f3e 50%, #1a472a 100%);
             color: white;
-            padding: 20px;
+            padding: 15px;
             position: relative;
             overflow: hidden;
         }
@@ -80,19 +80,19 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             flex-wrap: wrap;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         
         .shaigan-logo {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             filter: drop-shadow(0 4px 8px rgba(255, 215, 0, 0.3));
         }
         
         .main-title {
-            font-size: 2em;
+            font-size: 1.5em;
             font-weight: 700;
             background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffd700 100%);
             -webkit-background-clip: text;
@@ -102,10 +102,10 @@
         }
         
         .subtitle-credit {
-            font-size: 0.85em;
+            font-size: 0.75em;
             color: #a8d5ba;
             font-weight: 300;
-            margin-top: 5px;
+            margin-top: 3px;
             opacity: 0.9;
             font-style: italic;
         }
@@ -114,24 +114,25 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 10px;
-            margin-top: 10px;
-            font-size: 0.85em;
+            gap: 8px;
+            margin-top: 8px;
+            font-size: 0.75em;
             color: #a8d5ba;
+            flex-wrap: wrap;
         }
         
         .sync-status {
             display: inline-flex;
             align-items: center;
             gap: 5px;
-            padding: 5px 12px;
+            padding: 4px 10px;
             background: rgba(0, 0, 0, 0.2);
             border-radius: 15px;
         }
         
         .sync-dot {
-            width: 8px;
-            height: 8px;
+            width: 6px;
+            height: 6px;
             background: #4ade80;
             border-radius: 50%;
             animation: pulse 2s infinite;
@@ -143,81 +144,51 @@
         }
         
         .refresh-btn {
-            padding: 5px 15px;
+            padding: 4px 12px;
             background: rgba(255, 215, 0, 0.2);
             border: 1px solid rgba(255, 215, 0, 0.5);
             color: #ffd700;
             border-radius: 15px;
             cursor: pointer;
-            font-size: 0.85em;
+            font-size: 0.75em;
             transition: all 0.3s ease;
         }
         
         .refresh-btn:hover {
             background: rgba(255, 215, 0, 0.3);
-        }
-        
-        .view-toggle-section {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            margin-top: 15px;
-            padding: 12px;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-            flex-wrap: wrap;
-        }
-        
-        .view-btn {
-            padding: 6px 15px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.85em;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        .view-btn.active {
-            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
-            border-color: #ffd700;
-            color: #1a472a;
-            font-weight: 600;
+            transform: scale(1.05);
         }
         
         .stats-container {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-top: 15px;
+            gap: 10px;
+            margin-top: 10px;
             flex-wrap: wrap;
         }
         
         .stat-box {
             background: rgba(0, 0, 0, 0.2);
-            padding: 12px 20px;
-            border-radius: 10px;
-            min-width: 120px;
+            padding: 8px 15px;
+            border-radius: 8px;
+            min-width: 100px;
         }
         
         .stat-number {
-            font-size: 1.8em;
+            font-size: 1.5em;
             font-weight: bold;
             color: #ffd700;
             text-shadow: 0 2px 8px rgba(255, 215, 0, 0.5);
         }
         
         .stat-label {
-            font-size: 0.85em;
+            font-size: 0.75em;
             color: #ffffff;
-            margin-top: 5px;
+            margin-top: 3px;
         }
         
         .controls {
-            padding: 15px;
+            padding: 12px;
             background: #f8f9fa;
             border-bottom: 1px solid #dee2e6;
         }
@@ -225,17 +196,23 @@
         .search-filter-container {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 10px;
-            margin-bottom: 15px;
+            gap: 8px;
+            margin-bottom: 10px;
         }
         
         .search-box, .filter-select {
             width: 100%;
-            padding: 10px 15px;
+            padding: 8px 12px;
             border: 2px solid #dee2e6;
-            border-radius: 10px;
-            font-size: 0.95em;
+            border-radius: 8px;
+            font-size: 0.9em;
             background: white;
+        }
+        
+        .search-box:focus, .filter-select:focus {
+            outline: none;
+            border-color: #2d5f3e;
+            box-shadow: 0 0 0 3px rgba(45, 95, 62, 0.1);
         }
         
         .filter-buttons {
@@ -245,19 +222,25 @@
         }
         
         .filter-btn {
-            padding: 8px 16px;
+            padding: 8px 14px;
             border: none;
             background: linear-gradient(135deg, #2d5f3e 0%, #1a472a 100%);
             color: white;
             border-radius: 20px;
             cursor: pointer;
-            font-size: 0.85em;
+            font-size: 0.8em;
             flex: 1;
-            min-width: 120px;
+            min-width: 100px;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(45, 95, 62, 0.4);
         }
         
         .products-grid {
-            padding: 15px;
+            padding: 12px;
             display: grid;
             grid-template-columns: 1fr;
             gap: 15px;
@@ -269,14 +252,43 @@
             padding: 15px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-left: 4px solid #2d5f3e;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            transform: translateY(-3px);
         }
         
         .product-name {
-            font-size: 1.1em;
+            font-size: 1.05em;
             font-weight: 600;
             color: #1a472a;
             margin-bottom: 8px;
             word-wrap: break-word;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .product-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 6px;
+            font-size: 0.8em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .meta-item {
+            word-wrap: break-word;
+            overflow: hidden;
+        }
+        
+        .meta-label {
+            font-weight: 600;
+            color: #495057;
         }
         
         .composition {
@@ -286,6 +298,8 @@
             font-size: 0.85em;
             margin-bottom: 12px;
             border-left: 3px solid #28a745;
+            word-wrap: break-word;
+            overflow: hidden;
         }
         
         .sales-data {
@@ -297,41 +311,230 @@
         
         .sales-item {
             background: linear-gradient(135deg, #2d5f3e15 0%, #1a472a15 100%);
-            padding: 8px;
+            padding: 10px;
             border-radius: 8px;
             text-align: center;
         }
         
+        .sales-label {
+            font-size: 0.7em;
+            color: #666;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+        
         .sales-value {
-            font-size: 0.95em;
+            font-size: 1em;
             font-weight: bold;
             color: #1a472a;
+            word-wrap: break-word;
         }
         
         .sales-value.positive { color: #28a745; }
         .sales-value.negative { color: #dc3545; }
+        .sales-value.pending { color: #6c757d; font-style: italic; }
+        
+        .full-details-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #2d5f3e 0%, #1a472a 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .full-details-btn:hover {
+            background: linear-gradient(135deg, #1a472a 0%, #2d5f3e 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(45, 95, 62, 0.3);
+        }
+        
+        .arrow {
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+        
+        .full-details-btn.expanded .arrow {
+            transform: rotate(180deg);
+        }
+        
+        .expandable-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            margin-top: 0;
+        }
+        
+        .expandable-details.expanded {
+            max-height: 5000px;
+            margin-top: 15px;
+        }
+        
+        .detail-section {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 3px solid #2d5f3e;
+        }
+        
+        .detail-section-title {
+            font-size: 0.85em;
+            font-weight: 700;
+            color: #1a472a;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .detail-item {
+            margin-bottom: 8px;
+            font-size: 0.85em;
+            line-height: 1.5;
+            word-wrap: break-word;
+            overflow: hidden;
+        }
+        
+        .detail-label {
+            font-weight: 600;
+            color: #495057;
+            display: block;
+            margin-bottom: 3px;
+        }
+        
+        .detail-value {
+            color: #212529;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+        
+        .status-commercialized { background: #d4edda; color: #155724; }
+        .status-registered { background: #cfe2ff; color: #084298; }
+        .status-pending { background: #fff3cd; color: #664d03; }
+        
+        .action-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        
+        .action-btn {
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85em;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-scholar { background: #4285f4; }
+        .btn-gemini { background: #34a853; }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            padding: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .page-btn {
+            padding: 8px 12px;
+            border: 2px solid #2d5f3e;
+            background: white;
+            color: #2d5f3e;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85em;
+            transition: all 0.3s ease;
+        }
+        
+        .page-btn:hover:not(:disabled) { 
+            background: #2d5f3e; 
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .page-btn.active { 
+            background: #2d5f3e; 
+            color: white; 
+        }
+        
+        .page-btn:disabled { opacity: 0.5; cursor: not-allowed; }
         
         /* Tablet Styles */
         @media (min-width: 576px) {
-            .shaigan-logo { width: 70px; height: 70px; }
-            .main-title { font-size: 2.2em; }
+            header { padding: 20px; }
+            .shaigan-logo { width: 60px; height: 60px; }
+            .main-title { font-size: 1.8em; }
+            .controls { padding: 15px; }
             .products-grid {
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-                gap: 20px;
+                padding: 15px;
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 18px;
             }
         }
         
         /* Desktop Styles */
         @media (min-width: 768px) {
-            header { padding: 30px 40px; }
-            .shaigan-logo { width: 80px; height: 80px; }
-            .main-title { font-size: 2.5em; }
+            header { padding: 25px 35px; }
+            .shaigan-logo { width: 70px; height: 70px; }
+            .main-title { font-size: 2.2em; }
             .search-filter-container {
                 grid-template-columns: 2fr 1fr 1fr;
             }
+            .controls { padding: 20px 30px; }
             .products-grid {
-                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-                gap: 25px;
+                padding: 20px 30px;
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+                gap: 20px;
+            }
+            .product-card { padding: 20px; }
+            .action-buttons {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        /* Large Desktop */
+        @media (min-width: 1200px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
             }
         }
     </style>
@@ -359,12 +562,6 @@
                             <span id="syncStatus">Live sync active</span>
                         </span>
                         <button class="refresh-btn" onclick="loadData()">🔄 Refresh</button>
-                    </div>
-                    
-                    <div class="view-toggle-section">
-                        <span style="color: #fff; font-size: 0.9em;">📊 View:</span>
-                        <button class="view-btn active" onclick="setViewMode('compact')" id="compactBtn">📋 Compact</button>
-                        <button class="view-btn" onclick="setViewMode('detailed')" id="detailedBtn">📑 Detailed</button>
                     </div>
                     
                     <div class="stats-container">
@@ -401,6 +598,7 @@
             </div>
             
             <div class="products-grid" id="productsGrid"></div>
+            <div class="pagination" id="pagination"></div>
         </div>
     </div>
     
@@ -410,7 +608,8 @@
         
         let pharmaceuticalData = [];
         let filteredData = [];
-        let viewMode = 'compact';
+        let currentPage = 1;
+        const itemsPerPage = 20;
         
         // Load data from Google Sheets
         async function loadData() {
@@ -439,22 +638,6 @@
             }
         }
         
-        function setViewMode(mode) {
-            viewMode = mode;
-            const compactBtn = document.getElementById('compactBtn');
-            const detailedBtn = document.getElementById('detailedBtn');
-            
-            if (mode === 'compact') {
-                compactBtn.classList.add('active');
-                detailedBtn.classList.remove('active');
-            } else {
-                detailedBtn.classList.add('active');
-                compactBtn.classList.remove('active');
-            }
-            
-            renderProducts();
-        }
-        
         function updateStats() {
             document.getElementById('totalProducts').textContent = pharmaceuticalData.length;
             document.getElementById('displayedProducts').textContent = filteredData.length;
@@ -473,6 +656,11 @@
             });
         }
         
+        function productContainsCTD(product) {
+            const searchableFields = Object.values(product).join(' ');
+            return searchableFields.toUpperCase().includes('CTD');
+        }
+        
         function applyFilters() {
             const searchTerm = document.getElementById('searchBox').value.toLowerCase();
             const statusFilter = document.getElementById('statusFilter').value;
@@ -486,7 +674,7 @@
                 
                 let matchesStatus = true;
                 if (statusFilter === 'CTD') {
-                    matchesStatus = JSON.stringify(product).toUpperCase().includes('CTD');
+                    matchesStatus = productContainsCTD(product);
                 } else if (statusFilter) {
                     matchesStatus = 
                         (product.SpecialNote && product.SpecialNote.includes(statusFilter)) ||
@@ -498,6 +686,7 @@
                 return matchesSearch && matchesStatus && matchesDosage;
             });
             
+            currentPage = 1;
             updateStats();
             renderProducts();
         }
@@ -509,34 +698,202 @@
             applyFilters();
         }
         
+        function toggleDetails(index) {
+            const detailsDiv = document.getElementById(`details-${index}`);
+            const button = document.getElementById(`btn-${index}`);
+            
+            if (detailsDiv.classList.contains('expanded')) {
+                detailsDiv.classList.remove('expanded');
+                button.classList.remove('expanded');
+                button.innerHTML = '📋 Full Details <span class="arrow">▼</span>';
+            } else {
+                detailsDiv.classList.add('expanded');
+                button.classList.add('expanded');
+                button.innerHTML = '📋 Full Details <span class="arrow">▼</span>';
+            }
+        }
+        
+        function getStatusBadge(status) {
+            if (!status) return '';
+            let badgeClass = 'status-badge ';
+            if (status.includes('Commercialized')) badgeClass += 'status-commercialized';
+            else if (status.includes('Registered')) badgeClass += 'status-registered';
+            else badgeClass += 'status-pending';
+            return `<span class="${badgeClass}">${status}</span>`;
+        }
+        
         function renderProducts() {
             const grid = document.getElementById('productsGrid');
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const pageData = filteredData.slice(startIndex, endIndex);
             
-            if (filteredData.length === 0) {
-                grid.innerHTML = '<div style="text-align: center; padding: 50px; color: #666;">No products found</div>';
+            if (pageData.length === 0) {
+                grid.innerHTML = '<div style="text-align: center; padding: 50px; color: #666; grid-column: 1/-1;">No products found</div>';
                 return;
             }
             
-            grid.innerHTML = filteredData.map(product => `
-                <div class="product-card">
-                    <div class="product-name">🔬 ${product.ProductName || 'N/A'}</div>
-                    <div class="composition">
-                        <strong>Composition:</strong> ${product.Composition || 'N/A'}
-                    </div>
-                    <div class="sales-data">
-                        <div class="sales-item">
-                            <div style="font-size: 0.7em; color: #666; margin-bottom: 4px;">MAT VALUE</div>
-                            <div class="sales-value">${product.MATValue || 'N/A'}</div>
+            grid.innerHTML = pageData.map((product, index) => {
+                const globalIndex = startIndex + index;
+                const isPending = product.MATValue === 'Data Pending' || !product.MATValue;
+                
+                return `
+                    <div class="product-card">
+                        <div class="product-name">
+                            🔬 ${product.ProductName || 'N/A'}
                         </div>
-                        <div class="sales-item">
-                            <div style="font-size: 0.7em; color: #666; margin-bottom: 4px;">GROWTH</div>
-                            <div class="sales-value ${parseFloat(product.ValueGrowth) >= 0 ? 'positive' : 'negative'}">
-                                ${product.ValueGrowth || 'N/A'}
+                        
+                        <div class="product-meta">
+                            ${product.BrandName ? `<div class="meta-item"><span class="meta-label">Brand:</span> ${product.BrandName}</div>` : ''}
+                            <div class="meta-item"><span class="meta-label">Dosage:</span> ${product.DosageForm || 'N/A'}</div>
+                            <div class="meta-item"><span class="meta-label">Company:</span> ${product.Company || 'N/A'}</div>
+                        </div>
+
+                        <div class="composition">
+                            <strong>Composition:</strong> ${product.Composition || 'N/A'}
+                        </div>
+
+                        <div class="sales-data">
+                            <div class="sales-item">
+                                <div class="sales-label">📊 MAT VALUE</div>
+                                <div class="sales-value ${isPending ? 'pending' : ''}">${product.MATValue || 'N/A'}</div>
+                            </div>
+                            <div class="sales-item">
+                                <div class="sales-label">📈 GROWTH</div>
+                                <div class="sales-value ${parseFloat(product.ValueGrowth) >= 0 ? 'positive' : 'negative'}">
+                                    ${product.ValueGrowth || 'N/A'}
+                                </div>
                             </div>
                         </div>
+
+                        <div class="expandable-details" id="details-${globalIndex}">
+                            <div class="detail-section">
+                                <div class="detail-section-title">📊 Sales Metrics</div>
+                                <div class="detail-item">
+                                    <span class="detail-label">💰 MAT Value:</span>
+                                    <span class="detail-value">${product.MATValue || 'N/A'}</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">📈 Value Growth:</span>
+                                    <span class="detail-value">${product.ValueGrowth || 'N/A'}</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">📦 Unit Sales:</span>
+                                    <span class="detail-value">${product.UnitSale || 'N/A'}</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">📊 Unit Growth:</span>
+                                    <span class="detail-value">${product.UnitGrowth || 'N/A'}</span>
+                                </div>
+                            </div>
+
+                            ${(product.Indication || product.TargetPopulation) ? `
+                            <div class="detail-section">
+                                <div class="detail-section-title">🏥 Clinical Info</div>
+                                ${product.Indication ? `
+                                <div class="detail-item">
+                                    <span class="detail-label">💊 Indications:</span>
+                                    <span class="detail-value">${product.Indication}</span>
+                                </div>` : ''}
+                                ${product.TargetPopulation ? `
+                                <div class="detail-item">
+                                    <span class="detail-label">ℹ️ More Details:</span>
+                                    <span class="detail-value">${product.TargetPopulation}</span>
+                                </div>` : ''}
+                            </div>` : ''}
+
+                            ${product.TrialInformation ? `
+                            <div class="detail-section" style="border-left: 3px solid #ff6b6b;">
+                                <div class="detail-section-title">🧪 Trial Info</div>
+                                <div class="detail-item">
+                                    <span class="detail-label">📋 Trial Data:</span>
+                                    <span class="detail-value">${product.TrialInformation}</span>
+                                </div>
+                            </div>` : ''}
+
+                            ${product.StabilityInformation ? `
+                            <div class="detail-section" style="border-left: 3px solid #4ecdc4;">
+                                <div class="detail-section-title">📊 Stability Info</div>
+                                <div class="detail-item">
+                                    <span class="detail-label">🌡️ Stability:</span>
+                                    <span class="detail-value">${product.StabilityInformation}</span>
+                                </div>
+                            </div>` : ''}
+
+                            <div class="detail-section">
+                                <div class="detail-section-title">📋 Status</div>
+                                <div class="detail-item">
+                                    <span class="detail-label">✅ Registration:</span>
+                                    <span class="detail-value">${product.RegistrationStatus || 'N/A'}</span>
+                                    ${getStatusBadge(product.RegistrationStatus)}
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">🏪 Commercialization:</span>
+                                    <span class="detail-value">${product.SpecialNote || 'N/A'}</span>
+                                    ${getStatusBadge(product.SpecialNote)}
+                                </div>
+                                ${product.ProductCode ? `
+                                <div class="detail-item">
+                                    <span class="detail-label">🔢 Code:</span>
+                                    <span class="detail-value">${product.ProductCode}</span>
+                                </div>` : ''}
+                            </div>
+
+                            <div class="action-buttons">
+                                <a href="https://scholar.google.com/scholar?q=${encodeURIComponent(product.Composition + ' clinical trials CTD')}" 
+                                   target="_blank" class="action-btn btn-scholar">📚 Scholar</a>
+                                <a href="https://gemini.google.com/app?q=${encodeURIComponent('Tell me about ' + product.Composition + ' clinical trials, CTD, and stability')}" 
+                                   target="_blank" class="action-btn btn-gemini">🤖 AI</a>
+                            </div>
+                        </div>
+
+                        <button class="full-details-btn" id="btn-${globalIndex}" onclick="toggleDetails(${globalIndex})">
+                            📋 Full Details <span class="arrow">▼</span>
+                        </button>
                     </div>
-                </div>
-            `).join('');
+                `;
+            }).join('');
+            
+            renderPagination();
+        }
+        
+        function renderPagination() {
+            const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+            const pagination = document.getElementById('pagination');
+            if (totalPages <= 1) { pagination.innerHTML = ''; return; }
+
+            let html = `<button class="page-btn" onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>◀</button>`;
+            
+            const maxButtons = 3;
+            let startPage = Math.max(1, currentPage - 1);
+            let endPage = Math.min(totalPages, startPage + maxButtons - 1);
+            if (endPage - startPage < maxButtons - 1) startPage = Math.max(1, endPage - maxButtons + 1);
+
+            if (startPage > 1) {
+                html += `<button class="page-btn" onclick="changePage(1)">1</button>`;
+                if (startPage > 2) html += `<span style="padding: 8px;">...</span>`;
+            }
+
+            for (let i = startPage; i <= endPage; i++) {
+                html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">${i}</button>`;
+            }
+
+            if (endPage < totalPages) {
+                if (endPage < totalPages - 1) html += `<span style="padding: 8px;">...</span>`;
+                html += `<button class="page-btn" onclick="changePage(${totalPages})">${totalPages}</button>`;
+            }
+
+            html += `<button class="page-btn" onclick="changePage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>▶</button>`;
+
+            pagination.innerHTML = html;
+        }
+        
+        function changePage(page) {
+            const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+            if (page < 1 || page > totalPages) return;
+            currentPage = page;
+            renderProducts();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         
         // Setup event listeners
