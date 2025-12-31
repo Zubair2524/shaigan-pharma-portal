@@ -431,7 +431,7 @@
             margin-top: 4px;
         }
         
-        .status-commercialized { background: #d4edda; color: #155724; }
+        .status- { background: #d4edda; color: #155724; }
         .status-registered { background: #cfe2ff; color: #084298; }
         .status-pending { background: #fff3cd; color: #664d03; }
         
@@ -583,7 +583,7 @@
                     <input type="text" class="search-box" id="searchBox" placeholder="🔍 Search products...">
                     <select class="filter-select" id="statusFilter">
                         <option value="">All Status</option>
-                        <option value="Commercialized">Commercialized</option>
+                        <option value="In Market">In Market</option>
                         <option value="Not Commercialized">Not Commercialized</option>
                         <option value="Registered">Registered</option>
                         <option value="CTD">CTD Products</option>
@@ -717,7 +717,7 @@
         function getStatusBadge(status) {
             if (!status) return '';
             let badgeClass = 'status-badge ';
-            if (status.includes('Commercialized')) badgeClass += 'status-commercialized';
+            if (status.includes('')) badgeClass += 'status-';
             else if (status.includes('Registered')) badgeClass += 'status-registered';
             else badgeClass += 'status-pending';
             return `<span class="${badgeClass}">${status}</span>`;
