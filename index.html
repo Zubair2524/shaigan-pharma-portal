@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,35 +7,66 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --gold: #d4af37;
-            --turquoise: #008080;
-            --cream: #fdf5e6;
-            --bg-dark: #050a14;
-            --card-bg: rgba(16, 33, 65, 0.95);
-            --danger: #e74c3c;
-            --dup-purple: #8e44ad;
+        /* Theme Variables */
+        :root[data-theme="dark"] {
+            --bg-gradient: radial-gradient(circle at center, #102141 0%, #050a14 100%);
+            --glass-bg: rgba(16, 33, 65, 0.75);
+            --glass-border: rgba(212, 175, 55, 0.4);
+            --text-main: #fdf5e6;
+            --accent: #d4af37;
+            --sub-accent: #008080;
+            --icon-glass: rgba(212, 175, 55, 0.15);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        :root[data-theme="professional"] {
+            --bg-gradient: linear-gradient(135deg, #eceff1 0%, #cfd8dc 100%);
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(30, 136, 229, 0.3);
+            --text-main: #263238;
+            --accent: #1e88e5;
+            --sub-accent: #455a64;
+            --icon-glass: rgba(30, 136, 229, 0.1);
+        }
+
+        :root[data-theme="colorful"] {
+            --bg-gradient: linear-gradient(45deg, #ee0979, #ff6a00);
+            --glass-bg: rgba(255, 255, 255, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.5);
+            --text-main: #ffffff;
+            --accent: #ffff00;
+            --sub-accent: #00f2fe;
+            --icon-glass: rgba(255, 255, 255, 0.3);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; transition: background 0.4s ease, color 0.3s ease; }
 
         body {
-            background: radial-gradient(circle at center, #102141 0%, #050a14 100%);
+            background: var(--bg-gradient);
             background-attachment: fixed;
-            color: var(--cream);
+            color: var(--text-main);
             padding: 10px;
+            min-height: 100vh;
         }
+
+        /* Theme Selector */
+        .theme-switcher {
+            position: fixed; top: 20px; right: 20px; z-index: 1000;
+            display: flex; gap: 10px; background: var(--glass-bg);
+            padding: 10px; border-radius: 50px; backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+        }
+        .theme-btn { width: 25px; height: 25px; border-radius: 50%; cursor: pointer; border: 2px solid #fff; box-shadow: 0 0 5px rgba(0,0,0,0.2); }
 
         /* Header & Logo */
         .portal-header { text-align: center; padding: 30px 10px; position: relative; }
         .logo-box img { 
             height: 110px; margin-bottom: 15px; 
-            filter: drop-shadow(0 0 10px var(--gold));
+            filter: drop-shadow(0 0 10px var(--accent));
             animation: float 4s ease-in-out infinite;
         }
-        h1 { color: var(--gold); text-transform: uppercase; letter-spacing: 2px; font-size: 2.2rem; }
-        .sub-heading { color: var(--turquoise); letter-spacing: 4px; font-weight: 700; font-size: 0.9rem; margin-top: 5px; text-transform: uppercase; }
-        .agm-line { font-size: 0.65rem; color: var(--gold); opacity: 0.8; letter-spacing: 2px; margin-top: 2px; font-weight: 400; }
+        h1 { color: var(--accent); text-transform: uppercase; letter-spacing: 2px; font-size: 2.2rem; }
+        .sub-heading { color: var(--sub-accent); letter-spacing: 4px; font-weight: 700; font-size: 0.9rem; margin-top: 5px; text-transform: uppercase; }
+        .agm-line { font-size: 0.65rem; color: var(--accent); opacity: 0.8; letter-spacing: 2px; margin-top: 2px; font-weight: 400; }
 
         /* KPI Dashboard */
         .kpi-row {
@@ -43,7 +74,8 @@
             gap: 15px; max-width: 1200px; margin: 20px auto;
         }
         .kpi-card {
-            background: var(--card-bg); border: 1px solid var(--gold);
+            background: var(--glass-bg); backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
             border-radius: 15px; padding: 20px; text-align: center;
             transition: 0.3s; position: relative;
         }
@@ -53,81 +85,81 @@
         }
         .dot { height: 8px; width: 8px; background-color: #2ecc71; border-radius: 50%; display: inline-block; animation: blink 2s infinite; }
 
-        .kpi-card i { font-size: 2rem; color: var(--gold); margin-bottom: 10px; animation: pulse 2s infinite; }
-        .kpi-val { display: block; font-size: 2rem; font-weight: 800; color: #fff; }
+        /* Glassmorphic Icons */
+        .icon-circle {
+            width: 60px; height: 60px; background: var(--icon-glass); 
+            border-radius: 50%; display: flex; align-items: center; 
+            justify-content: center; margin: 0 auto 10px;
+            backdrop-filter: blur(5px); border: 1px solid var(--glass-border);
+        }
+        .kpi-card i { font-size: 1.5rem; color: var(--accent); animation: pulse 2s infinite; }
+        .kpi-val { display: block; font-size: 2rem; font-weight: 800; color: var(--text-main); }
         .kpi-lab { font-size: 0.7rem; opacity: 0.8; text-transform: uppercase; }
 
         /* Filters */
         .filter-glass {
-            background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px);
+            background: var(--glass-bg); backdrop-filter: blur(15px);
             border-radius: 20px; padding: 20px; max-width: 1200px;
-            margin: 0 auto 30px; border: 1px solid rgba(212, 175, 55, 0.2);
+            margin: 0 auto 30px; border: 1px solid var(--glass-border);
             display: flex; flex-wrap: wrap; gap: 10px;
         }
         .search-wrap { flex: 2; min-width: 280px; position: relative; }
         .search-wrap input { 
             width: 100%; padding: 12px 15px 12px 40px; border-radius: 10px; 
-            border: 2px solid var(--gold); background: #fff; color: #333; font-weight: 600;
+            border: 2px solid var(--accent); background: #fff; color: #333; font-weight: 600;
         }
-        .search-wrap i { position: absolute; left: 15px; top: 14px; color: var(--turquoise); }
+        .search-wrap i { position: absolute; left: 15px; top: 14px; color: var(--sub-accent); }
         .drop-filter { 
             flex: 1; min-width: 160px; padding: 12px; border-radius: 10px;
-            background: #0a192f; color: white; border: 1px solid var(--gold); cursor: pointer;
+            background: var(--glass-bg); color: var(--text-main); border: 1px solid var(--accent); cursor: pointer;
         }
-        .btn-clear { background: #c0392b; color: white; border: none; padding: 0 20px; border-radius: 10px; cursor: pointer; font-weight: 700; }
+        .btn-clear { background: #e74c3c; color: white; border: none; padding: 0 20px; border-radius: 10px; cursor: pointer; font-weight: 700; }
 
         /* Product Cards */
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 20px; max-width: 1300px; margin: auto; }
         .p-card {
-            background: var(--card-bg); border-radius: 15px; border-top: 4px solid var(--gold);
+            background: var(--glass-bg); backdrop-filter: blur(20px);
+            border-radius: 15px; border-top: 4px solid var(--accent);
             padding: 20px; transition: 0.4s; position: relative; overflow: hidden;
             display: flex; flex-direction: column; height: 100%;
+            border: 1px solid var(--glass-border);
         }
-        .p-card.expanded { grid-column: 1 / -1; border-left: 5px solid var(--gold); }
-        .p-card:hover:not(.expanded) { transform: translateY(-8px); box-shadow: 0 10px 25px rgba(0,0,0,0.6); }
+        .p-card.expanded { grid-column: 1 / -1; border-left: 5px solid var(--accent); }
+        .p-card:hover:not(.expanded) { transform: translateY(-8px); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
         
-        .card-title { font-size: 1.3rem; font-weight: 700; color: var(--gold); display: flex; align-items: center; gap: 12px; margin-bottom: 5px; }
-        .card-title i { animation: bounce 3s infinite; }
-        .comp-line { font-size: 0.85rem; color: #ccc; font-style: italic; display: block; margin-bottom: 10px; }
-        .ind-pill { font-size: 0.7rem; background: var(--turquoise); color: white; padding: 3px 10px; border-radius: 50px; font-weight: 700; display: inline-block; margin-bottom: 15px; }
+        .card-title { font-size: 1.3rem; font-weight: 700; color: var(--accent); display: flex; align-items: center; gap: 12px; margin-bottom: 5px; }
+        .card-title .icon-circle { width: 45px; height: 45px; margin: 0; }
+        .card-title i { font-size: 1.1rem; animation: bounce 3s infinite; }
+
+        .comp-line { font-size: 0.85rem; opacity: 0.8; font-style: italic; display: block; margin-bottom: 10px; }
+        .ind-pill { font-size: 0.7rem; background: var(--sub-accent); color: white; padding: 3px 10px; border-radius: 50px; font-weight: 700; display: inline-block; margin-bottom: 15px; }
 
         /* Data Matrix */
-        .matrix { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; background: rgba(0,0,0,0.3); padding: 12px; border-radius: 10px; }
+        .matrix { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; background: rgba(0,0,0,0.15); padding: 12px; border-radius: 10px; }
         .m-item { display: flex; flex-direction: column; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 4px; }
-        .m-lab { font-size: 0.6rem; color: var(--gold); text-transform: uppercase; font-weight: 800; }
-        .m-val { font-size: 0.9rem; font-weight: 700; color: #fff; }
+        .m-lab { font-size: 0.6rem; color: var(--accent); text-transform: uppercase; font-weight: 800; }
+        .m-val { font-size: 0.9rem; font-weight: 700; color: var(--text-main); }
 
         .extra-details {
-            margin-top: 20px; padding-top: 20px; border-top: 1px dashed var(--gold);
+            margin-top: 20px; padding-top: 20px; border-top: 1px dashed var(--accent);
             display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;
             animation: fadeIn 0.5s ease;
         }
 
-        /* Minimized Buttons & Tooltips */
+        /* Buttons & Interaction */
         .btn-row { display: flex; gap: 6px; margin-top: auto; padding-top: 15px; }
         .btn-tool { 
             flex: 1; padding: 8px 4px; border-radius: 6px; border: none; cursor: pointer;
             font-weight: 700; display: flex; align-items: center; justify-content: center; transition: 0.2s; font-size: 0.9rem;
-            position: relative;
         }
-        .btn-edit { background: var(--gold); color: black; }
-        .btn-info { background: var(--turquoise); color: white; }
-        .btn-dup { background: var(--dup-purple); color: white; }
-        .btn-del { background: transparent; border: 1px solid var(--danger); color: var(--danger); }
-        .btn-del:hover { background: var(--danger); color: white; }
-
-        /* Tooltip Style */
-        [data-tooltip]::before {
-            content: attr(data-tooltip); position: absolute; bottom: 125%; left: 50%; transform: translateX(-50%);
-            background: #000; color: var(--gold); padding: 4px 8px; border-radius: 4px; font-size: 0.6rem;
-            white-space: nowrap; opacity: 0; visibility: hidden; transition: 0.3s; border: 1px solid var(--gold); z-index: 100;
-        }
-        [data-tooltip]:hover::before { opacity: 1; visibility: visible; }
+        .btn-edit { background: var(--accent); color: #000; }
+        .btn-info { background: var(--sub-accent); color: white; }
+        .btn-dup { background: #8e44ad; color: white; }
+        .btn-del { background: transparent; border: 1px solid #e74c3c; color: #e74c3c; }
 
         /* Modal */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 999; padding: 20px; overflow-y: auto; align-items: center; justify-content: center; }
-        .modal-content { background: #16213e; width: 100%; max-width: 750px; border-radius: 20px; padding: 30px; border: 2px solid var(--gold); }
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); z-index: 999; padding: 20px; overflow-y: auto; align-items: center; justify-content: center; }
+        .modal-content { background: var(--glass-bg); width: 100%; max-width: 750px; border-radius: 20px; padding: 30px; border: 2px solid var(--accent); }
 
         /* Animations */
         @keyframes fadeIn { from {opacity: 0; transform: translateY(10px);} to {opacity: 1; transform: translateY(0);} }
@@ -138,6 +170,12 @@
     </style>
 </head>
 <body>
+
+    <div class="theme-switcher">
+        <div class="theme-btn" style="background: #102141;" onclick="setTheme('dark')" title="Dark Mode"></div>
+        <div class="theme-btn" style="background: #1e88e5;" onclick="setTheme('professional')" title="Professional Mode"></div>
+        <div class="theme-btn" style="background: linear-gradient(45deg, #ee0979, #ff6a00);" onclick="setTheme('colorful')" title="Colorful Mode"></div>
+    </div>
 
     <header class="portal-header">
         <div class="logo-box">
@@ -151,10 +189,12 @@
     <div class="kpi-row">
         <div class="kpi-card">
             <div class="live-indicator"><span class="dot"></span> LIVE UPDATES</div>
-            <i class="fas fa-database"></i><span class="kpi-val" id="countTotal">0</span><span class="kpi-lab">Total Portfolio Records</span>
+            <div class="icon-circle"><i class="fas fa-database"></i></div>
+            <span class="kpi-val" id="countTotal">0</span><span class="kpi-lab">Total Portfolio Records</span>
         </div>
         <div class="kpi-card">
-            <i class="fas fa-search-plus"></i><span class="kpi-val" id="countFiltered">0</span><span class="kpi-lab">Active Search Matches</span>
+            <div class="icon-circle"><i class="fas fa-search-plus"></i></div>
+            <span class="kpi-val" id="countFiltered">0</span><span class="kpi-lab">Active Search Matches</span>
         </div>
     </div>
 
@@ -167,13 +207,13 @@
 
     <div id="productGrid" class="grid">
         <div style="grid-column: 1/-1; text-align: center; padding: 100px;">
-            <i class="fas fa-atom fa-spin fa-3x" style="color:var(--gold)"></i><br><br>Accessing Cloud Database...
+            <i class="fas fa-atom fa-spin fa-3x" style="color:var(--accent)"></i><br><br>Accessing Cloud Database...
         </div>
     </div>
 
     <div id="editModal" class="modal">
         <div class="modal-content">
-            <h2 style="color:var(--gold); margin-bottom:20px; border-bottom: 2px solid var(--gold); padding-bottom: 10px;"><i class="fas fa-edit"></i> Product Master Update</h2>
+            <h2 style="color:var(--accent); margin-bottom:20px; border-bottom: 2px solid var(--accent); padding-bottom: 10px;"><i class="fas fa-edit"></i> Product Master Update</h2>
             <div class="form-grid" id="formContainer"></div>
             <div style="margin-top:25px; display:flex; gap:10px;">
                 <button id="btnSave" class="btn-tool" onclick="saveRecord()" style="background:#27ae60; color:white; flex:2;">Update Record</button>
@@ -184,11 +224,18 @@
 
 <script>
     const API_URL = "https://script.google.com/macros/s/AKfycbyFTRzD4NFwE-8ZC7YO1TmKtVUsdaOUorYq8P0zsDuRCzr6M2SwHuIAn4psJEImEi8/exec"; 
-                     
     const ADMIN_PASS = "Abc123@";
     let dbRaw = [];
     let dbFiltered = [];
     let expandedId = null;
+
+    function setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('selected-theme', theme);
+    }
+
+    const savedTheme = localStorage.getItem('selected-theme') || 'dark';
+    setTheme(savedTheme);
 
     async function init() {
         try {
@@ -196,17 +243,32 @@
             dbRaw = await res.json();
             dbFiltered = [...dbRaw];
             
+            // Populate Filters
             const teams = [...new Set(dbRaw.map(x => x.TeamName).filter(Boolean))].sort();
             const notes = [...new Set(dbRaw.map(x => x.SpecialNote).filter(Boolean))].sort();
             
             const tSel = document.getElementById('filterTeam');
             const nSel = document.getElementById('filterNote');
             
-            teams.forEach(t => tSel.innerHTML += `<option value="${t}">${t}</option>`);
-            notes.forEach(n => nSel.innerHTML += `<option value="${n}">${n}</option>`);
+            // Clear and rebuild to ensure "All Teams" always shows
+            tSel.innerHTML = '<option value="">All Teams</option>';
+            nSel.innerHTML = '<option value="">Special Note</option>';
+            
+            teams.forEach(t => {
+                const opt = document.createElement('option');
+                opt.value = opt.textContent = t;
+                tSel.appendChild(opt);
+            });
+            notes.forEach(n => {
+                const opt = document.createElement('option');
+                opt.value = opt.textContent = n;
+                nSel.appendChild(opt);
+            });
             
             render();
-        } catch (e) { document.getElementById('productGrid').innerHTML = "<h3 style='color:red; text-align:center;'>Database Offline</h3>"; }
+        } catch (e) { 
+            document.getElementById('productGrid').innerHTML = `<h3 style='color:red; text-align:center;'>Database Offline: ${e.message}</h3>`; 
+        }
     }
 
     const fmtG = (v) => (!v || isNaN(v)) ? (v || '0') : `${v}%`;
@@ -220,12 +282,15 @@
             const isExp = expandedId === p.ProductName;
             return `
             <div class="p-card ${isExp ? 'expanded' : ''}" id="card-${i}">
-                <div class="card-title"><i class="fas ${getFormIcon(p.DosageForm)}"></i> ${p.ProductName}</div>
+                <div class="card-title">
+                    <div class="icon-circle"><i class="fas ${getFormIcon(p.DosageForm)}"></i></div>
+                    ${p.ProductName}
+                </div>
                 <span class="comp-line">${p.Composition || 'Composition Pending'}</span>
                 <div class="ind-pill">${p.Indication || 'Therapeutic Area'}</div>
                 
                 <div class="matrix">
-                    <div class="m-item"><span class="m-lab">Molecule Market Value</span><span class="m-val" style="color:var(--gold)">${p.MATValue || '0'}</span></div>
+                    <div class="m-item"><span class="m-lab">Molecule Market Value</span><span class="m-val" style="color:var(--accent)">${p.MATValue || '0'}</span></div>
                     <div class="m-item"><span class="m-lab">Value Growth</span><span class="m-val">${fmtG(p.ValueGrowth)}</span></div>
                     <div class="m-item"><span class="m-lab">Unit Sale</span><span class="m-val">${p.UnitSale || '0'}</span></div>
                     <div class="m-item"><span class="m-lab">Unit Growth</span><span class="m-val">${fmtG(p.UnitGrowth)}</span></div>
@@ -241,16 +306,16 @@
                 ` : ''}
 
                 <div class="btn-row">
-                    <button class="btn-tool btn-info" data-tooltip="${isExp ? 'Compact View' : 'Details'}" onclick="toggleDetails('${p.ProductName.replace(/'/g, "\\'")}')">
+                    <button class="btn-tool btn-info" onclick="toggleDetails('${p.ProductName.replace(/'/g, "\\'")}')">
                         <i class="fas ${isExp ? 'fa-compress-alt' : 'fa-expand-alt'}"></i>
                     </button>
-                    <button class="btn-tool btn-dup" data-tooltip="Duplicate" onclick="handleDuplicate('${p.ProductName.replace(/'/g, "\\'")}')">
+                    <button class="btn-tool btn-dup" onclick="handleDuplicate('${p.ProductName.replace(/'/g, "\\'")}')">
                         <i class="fas fa-copy"></i>
                     </button>
-                    <button class="btn-tool btn-edit" data-tooltip="Edit" onclick="handleAuth('EDIT', '${p.ProductName.replace(/'/g, "\\'")}')">
+                    <button class="btn-tool btn-edit" onclick="handleAuth('EDIT', '${p.ProductName.replace(/'/g, "\\'")}')">
                         <i class="fas fa-pen"></i>
                     </button>
-                    <button class="btn-tool btn-del" data-tooltip="Delete" onclick="handleAuth('DELETE', '${p.ProductName.replace(/'/g, "\\'")}')">
+                    <button class="btn-tool btn-del" onclick="handleAuth('DELETE', '${p.ProductName.replace(/'/g, "\\'")}')">
                         <i class="fas fa-trash"></i>
                     </button>
                 </div>
@@ -268,23 +333,29 @@
 
     function getFormIcon(form) {
         const f = (form || "").toLowerCase();
+        // Liquid/Bottle
+        if(f.includes("suspension") || f.includes("syrup") || f.includes("liq") || f.includes("drop")) return "fa-prescription-bottle";
+        // Injection/Infusion/Vial
+        if(f.includes("inj") || f.includes("vial") || f.includes("infusion") || f.includes("ampoule")) return "fa-syringe";
+        // Topicals/Creams
+        if(f.includes("cream") || f.includes("oint") || f.includes("lotion") || f.includes("gel")) return "fa-pump-medical";
+        // Solids
         if(f.includes("tab")) return "fa-tablets";
         if(f.includes("cap")) return "fa-capsules";
-        if(f.includes("inj") || f.includes("vial")) return "fa-syringe";
         return "fa-pills";
     }
 
     function handleAuth(action, name) {
-        if(prompt("Administrator Password Required:") !== ADMIN_PASS) return alert("Unauthorized Access.");
-        
+        const pass = prompt("Administrator Password Required:");
+        if(pass !== ADMIN_PASS) return alert("Unauthorized Access.");
         if(action === 'EDIT') {
             const p = dbRaw.find(x => x.ProductName === name);
             const container = document.getElementById('formContainer');
             container.innerHTML = Object.entries(p).map(([k,v]) => `
                 <div>
-                    <label style="font-size:10px; color:var(--gold); font-weight:700; text-transform:uppercase;">${k}</label>
+                    <label style="font-size:10px; color:var(--accent); font-weight:700; text-transform:uppercase;">${k}</label>
                     <input type="text" id="inp_${k}" value="${v || ''}" 
-                    style="width:100%; padding:10px; background:#000; color:white; border:1px solid #444; border-radius:5px;">
+                    style="width:100%; padding:10px; background:rgba(0,0,0,0.1); color:inherit; border:1px solid var(--accent); border-radius:5px;">
                 </div>
             `).join('');
             document.getElementById('editModal').style.display = 'flex';
@@ -299,16 +370,9 @@
         if(prompt("Administrator Password Required:") !== ADMIN_PASS) return alert("Unauthorized Access.");
         const p = dbRaw.find(x => x.ProductName === name);
         const container = document.getElementById('formContainer');
-        
         container.innerHTML = Object.entries(p).map(([k,v]) => {
             let val = (k === 'ProductName') ? `${v} (Copy)` : (v || '');
-            return `
-                <div>
-                    <label style="font-size:10px; color:var(--gold); font-weight:700; text-transform:uppercase;">${k}</label>
-                    <input type="text" id="inp_${k}" value="${val}" 
-                    style="width:100%; padding:10px; background:#000; color:white; border:1px solid #444; border-radius:5px;">
-                </div>
-            `;
+            return `<div><label style="font-size:10px; color:var(--accent); uppercase;">${k}</label><input type="text" id="inp_${k}" value="${val}" style="width:100%; padding:10px; background:rgba(0,0,0,0.1); border:1px solid var(--accent); border-radius:5px;"></div>`;
         }).join('');
         document.getElementById('editModal').style.display = 'flex';
     }
