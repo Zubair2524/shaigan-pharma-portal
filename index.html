@@ -7,46 +7,54 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Theme Variables */
+        /* --- Enhanced Theme Variables --- */
         :root[data-theme="dark"] {
             --bg-gradient: radial-gradient(circle at center, #102141 0%, #050a14 100%);
-            --glass-bg: rgba(16, 33, 65, 0.75);
-            --glass-border: rgba(212, 175, 55, 0.4);
+            --glass-bg: rgba(16, 33, 65, 0.85);
+            --glass-border: rgba(212, 175, 55, 0.3);
             --text-main: #fdf5e6;
             --accent: #d4af37;
             --sub-accent: #008080;
-            --icon-glass: rgba(212, 175, 55, 0.15);
+            --icon-glass: rgba(212, 175, 55, 0.1);
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         :root[data-theme="professional"] {
-            --bg-gradient: linear-gradient(135deg, #eceff1 0%, #cfd8dc 100%);
-            --glass-bg: rgba(255, 255, 255, 0.7);
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --glass-bg: rgba(255, 255, 255, 0.85);
             --glass-border: rgba(30, 136, 229, 0.3);
             --text-main: #263238;
             --accent: #1e88e5;
             --sub-accent: #455a64;
             --icon-glass: rgba(30, 136, 229, 0.1);
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
 
         :root[data-theme="colorful"] {
-            --bg-gradient: linear-gradient(45deg, #ee0979, #ff6a00);
-            --glass-bg: rgba(255, 255, 255, 0.25);
-            --glass-border: rgba(255, 255, 255, 0.5);
+            --bg-gradient: linear-gradient(45deg, #8E2DE2, #4A00E0);
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.4);
             --text-main: #ffffff;
-            --accent: #ffff00;
+            --accent: #ffd700;
             --sub-accent: #00f2fe;
-            --icon-glass: rgba(255, 255, 255, 0.3);
+            --icon-glass: rgba(255, 255, 255, 0.2);
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; transition: background 0.4s ease, color 0.3s ease; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
 
         body {
             background: var(--bg-gradient);
             background-attachment: fixed;
             color: var(--text-main);
-            padding: 10px;
+            padding: 20px;
             min-height: 100vh;
         }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
 
         /* Theme Selector */
         .theme-switcher {
@@ -54,91 +62,120 @@
             display: flex; gap: 10px; background: var(--glass-bg);
             padding: 10px; border-radius: 50px; backdrop-filter: blur(10px);
             border: 1px solid var(--glass-border);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
-        .theme-btn { width: 25px; height: 25px; border-radius: 50%; cursor: pointer; border: 2px solid #fff; box-shadow: 0 0 5px rgba(0,0,0,0.2); }
+        .theme-btn { width: 30px; height: 30px; border-radius: 50%; cursor: pointer; border: 2px solid #fff; box-shadow: 0 0 5px rgba(0,0,0,0.2); }
+        .theme-btn:hover { transform: scale(1.2); }
 
         /* Header & Logo */
-        .portal-header { text-align: center; padding: 30px 10px; position: relative; }
+        .portal-header { text-align: center; padding: 40px 10px; position: relative; animation: slideDown 1s ease-out; }
         .logo-box img { 
-            height: 110px; margin-bottom: 15px; 
-            filter: drop-shadow(0 0 10px var(--accent));
-            animation: float 4s ease-in-out infinite;
+            height: 120px; margin-bottom: 20px; 
+            filter: drop-shadow(0 0 15px var(--accent));
+            animation: float 6s ease-in-out infinite;
         }
-        h1 { color: var(--accent); text-transform: uppercase; letter-spacing: 2px; font-size: 2.2rem; }
-        .sub-heading { color: var(--sub-accent); letter-spacing: 4px; font-weight: 700; font-size: 0.9rem; margin-top: 5px; text-transform: uppercase; }
-        .agm-line { font-size: 0.65rem; color: var(--accent); opacity: 0.8; letter-spacing: 2px; margin-top: 2px; font-weight: 400; }
+        h1 { color: var(--accent); text-transform: uppercase; letter-spacing: 3px; font-size: 2.5rem; font-weight: 800; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .sub-heading { color: var(--sub-accent); letter-spacing: 6px; font-weight: 700; font-size: 0.9rem; margin-top: 5px; text-transform: uppercase; }
+        .agm-line { font-size: 0.75rem; color: var(--text-main); opacity: 0.6; letter-spacing: 4px; margin-top: 5px; font-weight: 400; border-top: 1px solid var(--accent); display: inline-block; padding-top: 5px; }
 
         /* KPI Dashboard */
         .kpi-row {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px; max-width: 1200px; margin: 20px auto;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px; max-width: 1200px; margin: 30px auto;
         }
         .kpi-card {
-            background: var(--glass-bg); backdrop-filter: blur(15px);
+            background: var(--glass-bg); backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
-            border-radius: 15px; padding: 20px; text-align: center;
-            transition: 0.3s; position: relative;
+            border-radius: 20px; padding: 25px; text-align: center;
+            position: relative; overflow: hidden;
+            box-shadow: var(--card-shadow);
         }
+        .kpi-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+        
         .live-indicator {
             position: absolute; top: 15px; right: 20px;
-            display: flex; align-items: center; gap: 8px; font-size: 0.7rem; font-weight: bold; color: #2ecc71;
+            display: flex; align-items: center; gap: 8px; font-size: 0.65rem; font-weight: bold; color: #2ecc71;
+            background: rgba(46, 204, 113, 0.1); padding: 4px 8px; border-radius: 20px;
         }
         .dot { height: 8px; width: 8px; background-color: #2ecc71; border-radius: 50%; display: inline-block; animation: blink 2s infinite; }
 
-        /* Glassmorphic Icons */
+        /* Icons */
         .icon-circle {
-            width: 60px; height: 60px; background: var(--icon-glass); 
+            width: 70px; height: 70px; background: var(--icon-glass); 
             border-radius: 50%; display: flex; align-items: center; 
-            justify-content: center; margin: 0 auto 10px;
+            justify-content: center; margin: 0 auto 15px;
             backdrop-filter: blur(5px); border: 1px solid var(--glass-border);
+            box-shadow: inset 0 0 20px rgba(255,255,255,0.05);
         }
-        .kpi-card i { font-size: 1.5rem; color: var(--accent); animation: pulse 2s infinite; }
-        .kpi-val { display: block; font-size: 2rem; font-weight: 800; color: var(--text-main); }
-        .kpi-lab { font-size: 0.7rem; opacity: 0.8; text-transform: uppercase; }
+        /* KPI Pulse Animation */
+        .kpi-card i { font-size: 1.8rem; color: var(--accent); animation: pulse 2s infinite; }
+        
+        .kpi-val { display: block; font-size: 2.5rem; font-weight: 800; color: var(--text-main); margin-bottom: 5px; line-height: 1; }
+        .kpi-lab { font-size: 0.8rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 1px; }
 
         /* Filters */
         .filter-glass {
-            background: var(--glass-bg); backdrop-filter: blur(15px);
-            border-radius: 20px; padding: 20px; max-width: 1200px;
-            margin: 0 auto 30px; border: 1px solid var(--glass-border);
-            display: flex; flex-wrap: wrap; gap: 10px;
+            background: var(--glass-bg); backdrop-filter: blur(25px);
+            border-radius: 25px; padding: 25px; max-width: 1200px;
+            margin: 0 auto 40px; border: 1px solid var(--glass-border);
+            display: flex; flex-wrap: wrap; gap: 15px;
+            box-shadow: var(--card-shadow);
+            align-items: center;
         }
-        .search-wrap { flex: 2; min-width: 280px; position: relative; }
+        .search-wrap { flex: 2; min-width: 300px; position: relative; }
         .search-wrap input { 
-            width: 100%; padding: 12px 15px 12px 40px; border-radius: 10px; 
-            border: 2px solid var(--accent); background: #fff; color: #333; font-weight: 600;
+            width: 100%; padding: 15px 20px 15px 50px; border-radius: 15px; 
+            border: 2px solid transparent; background: rgba(255,255,255,0.9); color: #333; font-weight: 600;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
         }
-        .search-wrap i { position: absolute; left: 15px; top: 14px; color: var(--sub-accent); }
+        .search-wrap input:focus { border-color: var(--accent); outline: none; }
+        .search-wrap i { position: absolute; left: 20px; top: 16px; color: var(--sub-accent); font-size: 1.1rem; }
+        
         .drop-filter { 
-            flex: 1; min-width: 160px; padding: 12px; border-radius: 10px;
-            background: var(--glass-bg); color: var(--text-main); border: 1px solid var(--accent); cursor: pointer;
+            flex: 1; min-width: 200px; padding: 15px; border-radius: 15px;
+            background: var(--glass-bg); color: var(--text-main); border: 1px solid var(--glass-border); cursor: pointer;
+            font-weight: 600; appearance: none; -webkit-appearance: none;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23d4af37%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat; background-position: right 15px top 50%; background-size: 12px auto;
         }
-        .btn-clear { background: #e74c3c; color: white; border: none; padding: 0 20px; border-radius: 10px; cursor: pointer; font-weight: 700; }
+        .drop-filter option { background: #102141; color: white; }
+        
+        .btn-clear { 
+            background: #ff4757; color: white; border: none; padding: 0 30px; height: 52px;
+            border-radius: 15px; cursor: pointer; font-weight: 700; 
+            text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+        }
+        .btn-clear:hover { background: #ff6b81; transform: translateY(-2px); }
 
         /* Product Cards */
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 20px; max-width: 1300px; margin: auto; }
-        .p-card {
-            background: var(--glass-bg); backdrop-filter: blur(20px);
-            border-radius: 15px; border-top: 4px solid var(--accent);
-            padding: 20px; transition: 0.4s; position: relative; overflow: hidden;
-            display: flex; flex-direction: column; height: 100%;
-            border: 1px solid var(--glass-border);
-        }
-        .p-card.expanded { grid-column: 1 / -1; border-left: 5px solid var(--accent); }
-        .p-card:hover:not(.expanded) { transform: translateY(-8px); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 25px; max-width: 1300px; margin: auto; }
         
-        .card-title { font-size: 1.3rem; font-weight: 700; color: var(--accent); display: flex; align-items: center; gap: 12px; margin-bottom: 5px; }
-        .card-title .icon-circle { width: 45px; height: 45px; margin: 0; }
-        .card-title i { font-size: 1.1rem; animation: bounce 3s infinite; }
+        .p-card {
+            background: var(--glass-bg); backdrop-filter: blur(25px);
+            border-radius: 20px; border: 1px solid var(--glass-border);
+            padding: 25px; transition: 0.4s; position: relative; overflow: hidden;
+            display: flex; flex-direction: column; height: 100%;
+            box-shadow: var(--card-shadow);
+            opacity: 0; animation: slideUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+        
+        .p-card.expanded { grid-column: 1 / -1; border: 2px solid var(--accent); background: rgba(16, 33, 65, 0.95); }
+        .p-card:hover:not(.expanded) { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(0,0,0,0.4); border-color: var(--accent); }
+        
+        .card-title { font-size: 1.4rem; font-weight: 700; color: var(--accent); display: flex; align-items: center; gap: 15px; margin-bottom: 10px; line-height: 1.2; }
+        .card-title .icon-circle { width: 50px; height: 50px; margin: 0; min-width: 50px; background: rgba(0,0,0,0.2); }
+        /* Card Icon Animation */
+        .card-title i { font-size: 1.2rem; animation: bounce 3s infinite ease-in-out; }
 
-        .comp-line { font-size: 0.85rem; opacity: 0.8; font-style: italic; display: block; margin-bottom: 10px; }
-        .ind-pill { font-size: 0.7rem; background: var(--sub-accent); color: white; padding: 3px 10px; border-radius: 50px; font-weight: 700; display: inline-block; margin-bottom: 15px; }
+        .comp-line { font-size: 0.9rem; opacity: 0.9; font-style: italic; display: block; margin-bottom: 12px; color: #fff; }
+        .ind-pill { font-size: 0.75rem; background: var(--sub-accent); color: white; padding: 4px 12px; border-radius: 50px; font-weight: 700; display: inline-block; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
 
         /* Data Matrix */
-        .matrix { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; background: rgba(0,0,0,0.15); padding: 12px; border-radius: 10px; }
-        .m-item { display: flex; flex-direction: column; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 4px; }
-        .m-lab { font-size: 0.6rem; color: var(--accent); text-transform: uppercase; font-weight: 800; }
-        .m-val { font-size: 0.9rem; font-weight: 700; color: var(--text-main); }
+        .matrix { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; background: rgba(0,0,0,0.2); padding: 15px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.05); }
+        .m-item { display: flex; flex-direction: column; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 6px; }
+        .m-lab { font-size: 0.65rem; color: var(--accent); text-transform: uppercase; font-weight: 800; opacity: 0.8; }
+        .m-val { font-size: 1rem; font-weight: 700; color: var(--text-main); }
 
         .extra-details {
             margin-top: 20px; padding-top: 20px; border-top: 1px dashed var(--accent);
@@ -147,24 +184,32 @@
         }
 
         /* Buttons & Interaction */
-        .btn-row { display: flex; gap: 6px; margin-top: auto; padding-top: 15px; }
+        .btn-row { display: flex; gap: 10px; margin-top: auto; padding-top: 20px; }
         .btn-tool { 
-            flex: 1; padding: 8px 4px; border-radius: 6px; border: none; cursor: pointer;
-            font-weight: 700; display: flex; align-items: center; justify-content: center; transition: 0.2s; font-size: 0.9rem;
+            flex: 1; padding: 10px; border-radius: 10px; border: none; cursor: pointer;
+            font-weight: 700; display: flex; align-items: center; justify-content: center; transition: 0.2s; font-size: 1rem;
+            color: white; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
+        .btn-tool:hover { transform: translateY(-2px); filter: brightness(1.1); }
         .btn-edit { background: var(--accent); color: #000; }
-        .btn-info { background: var(--sub-accent); color: white; }
-        .btn-dup { background: #8e44ad; color: white; }
-        .btn-del { background: transparent; border: 1px solid #e74c3c; color: #e74c3c; }
+        .btn-info { background: var(--sub-accent); }
+        .btn-dup { background: #9b59b6; }
+        .btn-del { background: transparent; border: 2px solid #e74c3c; color: #e74c3c; box-shadow: none; }
+        .btn-del:hover { background: #e74c3c; color: white; }
 
         /* Modal */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); z-index: 999; padding: 20px; overflow-y: auto; align-items: center; justify-content: center; }
-        .modal-content { background: var(--glass-bg); width: 100%; max-width: 750px; border-radius: 20px; padding: 30px; border: 2px solid var(--accent); }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); backdrop-filter: blur(15px); z-index: 999; padding: 20px; overflow-y: auto; align-items: center; justify-content: center; }
+        .modal-content { background: #102141; width: 100%; max-width: 800px; border-radius: 25px; padding: 40px; border: 2px solid var(--accent); box-shadow: 0 20px 50px rgba(0,0,0,0.5); animation: zoomIn 0.3s ease; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
 
         /* Animations */
-        @keyframes fadeIn { from {opacity: 0; transform: translateY(10px);} to {opacity: 1; transform: translateY(0);} }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+        @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+        @keyframes slideDown { from {opacity: 0; transform: translateY(-30px);} to {opacity: 1; transform: translateY(0);} }
+        @keyframes slideUp { from {opacity: 0; transform: translateY(40px);} to {opacity: 1; transform: translateY(0);} }
+        @keyframes zoomIn { from {opacity: 0; transform: scale(0.9);} to {opacity: 1; transform: scale(1);} }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
         @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
         @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-8px);} 60% {transform: translateY(-4px);} }
     </style>
@@ -182,42 +227,44 @@
             <img src="1ab.png" alt="Shaigan Logo" onerror="this.src='https://i.ibb.co/qY7z8yY/Shaigan-Logo.png'">
         </div>
         <h1>Business Development Portal</h1>
-        <div class="sub-heading">R&D | REGULATORY | BUSINESS DEVELOPMENT</div>
-        <div class="agm-line">AGM BD</div>
+        <div class="sub-heading">R&D | Regulatory | Business Development</div>
+        <div class="agm-line">AGM BD Strategic Dashboard</div>
     </header>
 
     <div class="kpi-row">
         <div class="kpi-card">
-            <div class="live-indicator"><span class="dot"></span> LIVE UPDATES</div>
+            <div class="live-indicator"><span class="dot"></span> LIVE</div>
             <div class="icon-circle"><i class="fas fa-database"></i></div>
             <span class="kpi-val" id="countTotal">0</span><span class="kpi-lab">Total Portfolio Records</span>
         </div>
         <div class="kpi-card">
-            <div class="icon-circle"><i class="fas fa-search-plus"></i></div>
+            <div class="icon-circle"><i class="fas fa-filter"></i></div>
             <span class="kpi-val" id="countFiltered">0</span><span class="kpi-lab">Active Search Matches</span>
         </div>
     </div>
 
     <div class="filter-glass">
-        <div class="search-wrap"><i class="fas fa-search"></i><input type="text" id="mainSearch" placeholder="Search brands, market, team..."></div>
-        <select id="filterTeam" class="drop-filter"><option value="">All Teams</option></select>
+        <div class="search-wrap"><i class="fas fa-search"></i><input type="text" id="mainSearch" placeholder="Search brands, generics, or indication..."></div>
         <select id="filterNote" class="drop-filter"><option value="">Special Note</option></select>
-        <button class="btn-clear" onclick="clearFilters()">Reset Portal</button>
+        <button class="btn-clear" onclick="clearFilters()"><i class="fas fa-undo"></i> Reset</button>
     </div>
 
     <div id="productGrid" class="grid">
         <div style="grid-column: 1/-1; text-align: center; padding: 100px;">
-            <i class="fas fa-atom fa-spin fa-3x" style="color:var(--accent)"></i><br><br>Accessing Cloud Database...
+            <i class="fas fa-circle-notch fa-spin fa-3x" style="color:var(--accent)"></i><br><br>
+            <span style="font-weight:600; letter-spacing:1px;">Securely Syncing with Database...</span>
         </div>
     </div>
 
     <div id="editModal" class="modal">
         <div class="modal-content">
-            <h2 style="color:var(--accent); margin-bottom:20px; border-bottom: 2px solid var(--accent); padding-bottom: 10px;"><i class="fas fa-edit"></i> Product Master Update</h2>
+            <h2 style="color:var(--accent); margin-bottom:30px; border-bottom: 2px solid var(--accent); padding-bottom: 15px; text-transform:uppercase;">
+                <i class="fas fa-edit"></i> Modify Record
+            </h2>
             <div class="form-grid" id="formContainer"></div>
-            <div style="margin-top:25px; display:flex; gap:10px;">
-                <button id="btnSave" class="btn-tool" onclick="saveRecord()" style="background:#27ae60; color:white; flex:2;">Update Record</button>
-                <button class="btn-tool" onclick="closeModal()" style="background:#555; color:white; flex:1;">Cancel</button>
+            <div style="margin-top:30px; display:flex; gap:15px;">
+                <button id="btnSave" class="btn-tool" onclick="saveRecord()" style="background:#27ae60; flex:2; font-size:1.1rem;">Update Record</button>
+                <button class="btn-tool" onclick="closeModal()" style="background:#555; flex:1;">Cancel</button>
             </div>
         </div>
     </div>
@@ -243,31 +290,31 @@
             dbRaw = await res.json();
             dbFiltered = [...dbRaw];
             
-            // Populate Filters
-            const teams = [...new Set(dbRaw.map(x => x.TeamName).filter(Boolean))].sort();
-            const notes = [...new Set(dbRaw.map(x => x.SpecialNote).filter(Boolean))].sort();
+            // 2. Logic to count Notes
+            const noteCounts = {};
+            dbRaw.forEach(item => {
+                const n = (item.SpecialNote || "").trim();
+                if(n) {
+                    noteCounts[n] = (noteCounts[n] || 0) + 1;
+                }
+            });
             
-            const tSel = document.getElementById('filterTeam');
             const nSel = document.getElementById('filterNote');
             
-            // Clear and rebuild to ensure "All Teams" always shows
-            tSel.innerHTML = '<option value="">All Teams</option>';
-            nSel.innerHTML = '<option value="">Special Note</option>';
+            // Reset Dropdown
+            nSel.innerHTML = `<option value="">All Notes (${dbRaw.length})</option>`;
             
-            teams.forEach(t => {
+            // Populate Sorted Notes with Counts
+            Object.keys(noteCounts).sort().forEach(n => {
                 const opt = document.createElement('option');
-                opt.value = opt.textContent = t;
-                tSel.appendChild(opt);
-            });
-            notes.forEach(n => {
-                const opt = document.createElement('option');
-                opt.value = opt.textContent = n;
+                opt.value = n;
+                opt.textContent = `${n} (${noteCounts[n]})`; // Badge Format
                 nSel.appendChild(opt);
             });
             
             render();
         } catch (e) { 
-            document.getElementById('productGrid').innerHTML = `<h3 style='color:red; text-align:center;'>Database Offline: ${e.message}</h3>`; 
+            document.getElementById('productGrid').innerHTML = `<h3 style='color:#e74c3c; text-align:center; padding:50px;'>Database Offline: ${e.message}</h3>`; 
         }
     }
 
@@ -280,42 +327,46 @@
 
         grid.innerHTML = dbFiltered.map((p, i) => {
             const isExp = expandedId === p.ProductName;
+            // Added animation-delay for staggered effect
             return `
-            <div class="p-card ${isExp ? 'expanded' : ''}" id="card-${i}">
+            <div class="p-card ${isExp ? 'expanded' : ''}" id="card-${i}" style="animation-delay: ${i * 0.05}s">
                 <div class="card-title">
                     <div class="icon-circle"><i class="fas ${getFormIcon(p.DosageForm)}"></i></div>
-                    ${p.ProductName}
+                    <div>
+                        ${p.ProductName}
+                        <div style="font-size:0.6rem; opacity:0.6; font-weight:400; text-transform:uppercase; margin-top:2px;">${p.TeamName || 'Unassigned'}</div>
+                    </div>
                 </div>
                 <span class="comp-line">${p.Composition || 'Composition Pending'}</span>
                 <div class="ind-pill">${p.Indication || 'Therapeutic Area'}</div>
                 
                 <div class="matrix">
                     <div class="m-item"><span class="m-lab">Molecule Market Value</span><span class="m-val" style="color:var(--accent)">${p.MATValue || '0'}</span></div>
-                    <div class="m-item"><span class="m-lab">Value Growth</span><span class="m-val">${fmtG(p.ValueGrowth)}</span></div>
+                    <div class="m-item"><span class="m-lab">Value Growth</span><span class="m-val" style="color:${parseFloat(p.ValueGrowth) > 0 ? '#2ecc71' : '#fff'}">${fmtG(p.ValueGrowth)}</span></div>
                     <div class="m-item"><span class="m-lab">Unit Sale</span><span class="m-val">${p.UnitSale || '0'}</span></div>
-                    <div class="m-item"><span class="m-lab">Unit Growth</span><span class="m-val">${fmtG(p.UnitGrowth)}</span></div>
+                    <div class="m-item"><span class="m-lab">Unit Growth</span><span class="m-val" style="color:${parseFloat(p.UnitGrowth) > 0 ? '#2ecc71' : '#fff'}">${fmtG(p.UnitGrowth)}</span></div>
                 </div>
 
                 ${isExp ? `
                 <div class="extra-details">
                     ${Object.entries(p).map(([k,v]) => {
-                        if(['ProductName','Composition','Indication','MATValue','ValueGrowth','UnitSale','UnitGrowth'].includes(k)) return '';
+                        if(['ProductName','Composition','Indication','MATValue','ValueGrowth','UnitSale','UnitGrowth', 'TeamName'].includes(k)) return '';
                         return `<div class="m-item"><span class="m-lab">${k}</span><span class="m-val">${v || '---'}</span></div>`;
                     }).join('')}
                 </div>
                 ` : ''}
 
                 <div class="btn-row">
-                    <button class="btn-tool btn-info" onclick="toggleDetails('${p.ProductName.replace(/'/g, "\\'")}')">
+                    <button class="btn-tool btn-info" onclick="toggleDetails('${p.ProductName.replace(/'/g, "\\'")}')" title="Expand Details">
                         <i class="fas ${isExp ? 'fa-compress-alt' : 'fa-expand-alt'}"></i>
                     </button>
-                    <button class="btn-tool btn-dup" onclick="handleDuplicate('${p.ProductName.replace(/'/g, "\\'")}')">
+                    <button class="btn-tool btn-dup" onclick="handleDuplicate('${p.ProductName.replace(/'/g, "\\'")}')" title="Duplicate Record">
                         <i class="fas fa-copy"></i>
                     </button>
-                    <button class="btn-tool btn-edit" onclick="handleAuth('EDIT', '${p.ProductName.replace(/'/g, "\\'")}')">
+                    <button class="btn-tool btn-edit" onclick="handleAuth('EDIT', '${p.ProductName.replace(/'/g, "\\'")}')" title="Edit Master">
                         <i class="fas fa-pen"></i>
                     </button>
-                    <button class="btn-tool btn-del" onclick="handleAuth('DELETE', '${p.ProductName.replace(/'/g, "\\'")}')">
+                    <button class="btn-tool btn-del" onclick="handleAuth('DELETE', '${p.ProductName.replace(/'/g, "\\'")}')" title="Delete">
                         <i class="fas fa-trash"></i>
                     </button>
                 </div>
@@ -334,7 +385,7 @@
     function getFormIcon(form) {
         const f = (form || "").toLowerCase();
         // Liquid/Bottle
-        if(f.includes("suspension") || f.includes("syrup") || f.includes("liq") || f.includes("drop")) return "fa-prescription-bottle";
+        if(f.includes("suspension") || f.includes("syrup") || f.includes("liq") || f.includes("drop")) return "fa-prescription-bottle-alt";
         // Injection/Infusion/Vial
         if(f.includes("inj") || f.includes("vial") || f.includes("infusion") || f.includes("ampoule")) return "fa-syringe";
         // Topicals/Creams
@@ -342,7 +393,7 @@
         // Solids
         if(f.includes("tab")) return "fa-tablets";
         if(f.includes("cap")) return "fa-capsules";
-        return "fa-pills";
+        return "fa-box-open";
     }
 
     function handleAuth(action, name) {
@@ -353,9 +404,9 @@
             const container = document.getElementById('formContainer');
             container.innerHTML = Object.entries(p).map(([k,v]) => `
                 <div>
-                    <label style="font-size:10px; color:var(--accent); font-weight:700; text-transform:uppercase;">${k}</label>
+                    <label style="font-size:11px; color:var(--accent); font-weight:700; text-transform:uppercase; display:block; margin-bottom:5px;">${k}</label>
                     <input type="text" id="inp_${k}" value="${v || ''}" 
-                    style="width:100%; padding:10px; background:rgba(0,0,0,0.1); color:inherit; border:1px solid var(--accent); border-radius:5px;">
+                    style="width:100%; padding:12px; background:rgba(0,0,0,0.2); color:white; border:1px solid rgba(255,255,255,0.2); border-radius:8px; font-size:0.9rem;">
                 </div>
             `).join('');
             document.getElementById('editModal').style.display = 'flex';
@@ -372,7 +423,7 @@
         const container = document.getElementById('formContainer');
         container.innerHTML = Object.entries(p).map(([k,v]) => {
             let val = (k === 'ProductName') ? `${v} (Copy)` : (v || '');
-            return `<div><label style="font-size:10px; color:var(--accent); uppercase;">${k}</label><input type="text" id="inp_${k}" value="${val}" style="width:100%; padding:10px; background:rgba(0,0,0,0.1); border:1px solid var(--accent); border-radius:5px;"></div>`;
+            return `<div><label style="font-size:11px; color:var(--accent); uppercase; display:block; margin-bottom:5px;">${k}</label><input type="text" id="inp_${k}" value="${val}" style="width:100%; padding:12px; background:rgba(0,0,0,0.2); color:white; border:1px solid rgba(255,255,255,0.2); border-radius:8px;"></div>`;
         }).join('');
         document.getElementById('editModal').style.display = 'flex';
     }
@@ -387,7 +438,7 @@
 
     async function saveRecord() {
         const btn = document.getElementById('btnSave');
-        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Syncing...';
+        btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Syncing...';
         const payload = {};
         document.querySelectorAll('[id^="inp_"]').forEach(el => {
             const keyName = el.id.replace('inp_', '');
@@ -398,18 +449,19 @@
 
     function applyFilters() {
         const s = document.getElementById('mainSearch').value.toLowerCase();
-        const t = document.getElementById('filterTeam').value;
         const n = document.getElementById('filterNote').value;
+        
         dbFiltered = dbRaw.filter(p => {
             const searchableText = Object.values(p).join(" ").toLowerCase();
-            return searchableText.includes(s) && (!t || p.TeamName === t) && (!n || p.SpecialNote === n);
+            const noteVal = (p.SpecialNote || "").trim();
+            
+            return searchableText.includes(s) && (!n || noteVal === n);
         });
         render();
     }
 
     function clearFilters() {
         document.getElementById('mainSearch').value = "";
-        document.getElementById('filterTeam').value = "";
         document.getElementById('filterNote').value = "";
         dbFiltered = [...dbRaw];
         render();
@@ -417,7 +469,6 @@
 
     function closeModal() { document.getElementById('editModal').style.display = 'none'; }
     document.getElementById('mainSearch').addEventListener('input', applyFilters);
-    document.getElementById('filterTeam').addEventListener('change', applyFilters);
     document.getElementById('filterNote').addEventListener('change', applyFilters);
     window.onload = init;
 </script>
